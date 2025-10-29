@@ -1,15 +1,3 @@
-#!/usr/bin/env python3
-"""
-Time Series Deep Learning Experimentation with Transformer Model
-================================================================
-
-This script implements a Transformer-based model for time series forecasting
-of household appliance energy consumption.
-
-Author: Group Assignment
-Date: 2024
-"""
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
