@@ -1,129 +1,121 @@
 # Appliances Energy Consumption Forecasting Using Time Series Machine Learning
 
-## 项目概述
+## Project Overview
 
-本项目使用多种时间序列机器学习方法预测家电能耗，包括传统机器学习模型、时间序列专用模型和深度学习方法。
+This project applies various time series machine learning methods to predict household appliance energy consumption, including traditional machine learning models, specialized time series models, and deep learning approaches.
 
-## 数据集
+## Dataset
 
-- **数据来源**: 家庭能耗监测数据
-- **时间范围**: 2016年1月-5月
-- **数据量**: 19,591条记录，37个特征
-- **目标变量**: Appliances (家电能耗，单位：Wh)
-- **特征类型**: 
-  - 温度传感器数据 (T1-T9)
-  - 湿度传感器数据 (RH_1-RH_9)
-  - 天气数据 (温度、湿度、气压、风速等)
-  - 时间特征 (小时、星期、周末标识等)
-  - 滞后特征和滚动统计特征
+- **Data Source**: Household energy consumption monitoring data
+- **Time Period**: January - May 2016
+- **Data Size**: 19,591 records with 37 features
+- **Target Variable**: Appliances (energy consumption in Wh)
+- **Feature Types**: 
+  - Temperature sensor data (T1-T9)
+  - Humidity sensor data (RH_1-RH_9)
+  - Weather data (temperature, humidity, pressure, wind speed, etc.)
+  - Time features (hour, weekday, weekend indicators, etc.)
+  - Lag features and rolling statistics
 
-## 项目结构
+## Project Structure
 
 ```
-├── data/                           # 数据文件
-│   ├── energydata_complete_raw.csv     # 原始数据
-│   └── energydata_complete_cleaned.csv # 清洗后数据
+├── data/                           # Data files
+│   ├── energydata_complete_raw.csv     # Raw data
+│   └── energydata_complete_cleaned.csv # Cleaned data
 ├── notebooks/                      # Jupyter notebooks
-│   ├── 1.0-EDA-Descriptive_Stats.ipynb           # 探索性数据分析
-│   ├── 2.0-Feature_Engineering_Exploration.ipynb  # 特征工程
-│   ├── 3.0-Traditional_ML_Experimentation.ipynb   # 传统机器学习
-│   └── 4.0-TimeSeries_ML_Experimentation.ipynb    # 时间序列机器学习
-├── results/                        # 结果文件
-│   ├── eda_plots/                     # EDA图表
-│   └── prediction_plots/              # 预测结果图表
-├── neural_network.py               # PyTorch神经网络实现
-├── requirements.txt                # 依赖包列表
-└── README.md                      # 项目说明
+│   ├── 1.0-EDA-Descriptive_Stats.ipynb           # Exploratory Data Analysis
+│   ├── 2.0-Feature_Engineering_Exploration.ipynb  # Feature Engineering
+│   ├── 3.0-Traditional_ML_Experimentation.ipynb   # Traditional Machine Learning
+│   └── 4.0-TimeSeries_ML_Experimentation.ipynb    # Time Series Machine Learning
+├── results/                        # Result files
+│   ├── eda_plots/                     # EDA plots
+│   └── prediction_plots/              # Prediction result plots
+├── neural_network.py               # PyTorch neural network implementation
+├── requirements.txt                # Dependencies
+└── README.md                      # Project documentation
 ```
 
-## 实验内容
+## Experiments
 
-### 1. 探索性数据分析 (EDA)
-- 数据分布分析
-- 时间序列可视化
-- 相关性分析
-- 季节性和趋势分析
+### 1. Exploratory Data Analysis (EDA)
+- Data distribution analysis
+- Time series visualization
+- Correlation analysis
+- Seasonality and trend analysis
 
-### 2. 特征工程
-- 时间特征提取 (小时、星期、周末)
-- 周期性特征编码 (sin/cos变换)
-- 滞后特征创建
-- 滚动统计特征
+### 2. Feature Engineering
+- Time feature extraction (hour, weekday, weekend)
+- Cyclical feature encoding (sin/cos transformation)
+- Lag feature creation
+- Rolling statistics features
 
-### 3. 传统机器学习模型
-- 线性回归 (Linear Regression)
-- 随机森林 (Random Forest)
+### 3. Traditional Machine Learning Models
+- Linear Regression
+- Random Forest
 - XGBoost
-- 支持向量机 (SVM)
-- 神经网络 (MLP)
+- Support Vector Machine (SVM)
+- Multi-layer Perceptron (MLP)
 
-### 4. 时间序列机器学习模型
-- **Prophet**: Facebook开发的时间序列预测工具
-- **ARIMA**: 自回归积分滑动平均模型
-- **LSTM**: 长短期记忆神经网络
+### 4. Time Series Machine Learning Models
+- **Prophet**: Facebook's time series forecasting tool
+- **ARIMA**: Autoregressive Integrated Moving Average model
+- **LSTM**: Long Short-Term Memory neural network
 
-### 5. 深度学习模型
-- PyTorch实现的多层神经网络
-- TensorFlow/Keras实现的LSTM网络
+### 5. Deep Learning Models
+- PyTorch multi-layer neural network
+- TensorFlow/Keras LSTM network
 
-## 模型性能对比
+## Model Performance Evaluation
 
-所有模型使用以下评估指标：
-- **MSE** (均方误差)
-- **RMSE** (均方根误差)
-- **MAE** (平均绝对误差)
-- **R²** (决定系数)
+All models are evaluated using the following metrics:
+- **MSE** (Mean Squared Error)
+- **RMSE** (Root Mean Squared Error)
+- **MAE** (Mean Absolute Error)
+- **R²** (Coefficient of Determination)
 
-## 安装和运行
+## Setup and Usage
 
-### 1. 环境要求
+### 1. Requirements
 ```bash
 Python 3.8+
 ```
 
-### 2. 安装依赖
+### 2. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. 运行实验
-按顺序运行以下notebook：
-1. `1.0-EDA-Descriptive_Stats.ipynb` - 数据探索
-2. `2.0-Feature_Engineering_Exploration.ipynb` - 特征工程
-3. `3.0-Traditional_ML_Experimentation.ipynb` - 传统机器学习
-4. `4.0-TimeSeries_ML_Experimentation.ipynb` - 时间序列机器学习
+### 3. Run Experiments
+Execute the notebooks in the following order:
+1. `1.0-EDA-Descriptive_Stats.ipynb` - Data exploration
+2. `2.0-Feature_Engineering_Exploration.ipynb` - Feature engineering
+3. `3.0-Traditional_ML_Experimentation.ipynb` - Traditional machine learning
+4. `4.0-TimeSeries_ML_Experimentation.ipynb` - Time series machine learning
 
-### 4. 运行神经网络模型
+### 4. Run Neural Network Model
 ```bash
 python neural_network.py
 ```
 
-## 主要发现
+## Key Findings
 
-1. **季节性模式**: 家电能耗具有明显的日内和周内季节性
-2. **特征重要性**: 滞后特征和滚动统计特征对预测性能提升显著
-3. **模型性能**: 时间序列专用模型在捕获时间依赖性方面表现更好
-4. **深度学习**: LSTM能够学习复杂的非线性时间模式
+1. **Seasonal Patterns**: Appliance energy consumption shows clear daily and weekly seasonality
+2. **Feature Importance**: Lag features and rolling statistics significantly improve prediction performance
+3. **Model Performance**: Time series specialized models perform better at capturing temporal dependencies
+4. **Deep Learning**: LSTM can learn complex nonlinear temporal patterns
 
-## 结果文件
+## Results
 
-- `results/eda_plots/`: EDA分析图表
-- `results/prediction_plots/`: 模型预测结果图表
-- `results/timeseries_model_results.csv`: 时间序列模型性能对比
+- `results/eda_plots/`: EDA analysis plots
+- `results/prediction_plots/`: Model prediction result plots
+- `results/timeseries_model_results.csv`: Time series model performance comparison
 
-## 技术栈
+## Technology Stack
 
-- **数据处理**: pandas, numpy
-- **可视化**: matplotlib, seaborn
-- **传统机器学习**: scikit-learn, xgboost
-- **时间序列**: prophet, statsmodels
-- **深度学习**: tensorflow, keras, pytorch
-- **开发环境**: Jupyter Notebook
-
-## 贡献
-
-欢迎提交Issue和Pull Request来改进项目。
-
-## 许可证
-
-MIT License
+- **Data Processing**: pandas, numpy
+- **Visualization**: matplotlib, seaborn
+- **Traditional ML**: scikit-learn, xgboost
+- **Time Series**: prophet, statsmodels
+- **Deep Learning**: tensorflow, keras, pytorch
+- **Development**: Jupyter Notebook
