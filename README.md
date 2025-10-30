@@ -6,16 +6,26 @@ This project applies various time series machine learning methods to predict hou
 
 ## Dataset
 
-- **Data Source**: Household energy consumption monitoring data
-- **Time Period**: January - May 2016
-- **Data Size**: 19,591 records with 37 features
+### Data Source
+- **Dataset URL**: [Kaggle - Appliances Energy Prediction Data Set](https://www.kaggle.com/datasets/sohommajumder21/appliances-energy-prediction-data-set)
+- **Original Author**: Luis Candanedo, University of Mons (UMONS)
+
+### Dataset Characteristics
+- **Data Type**: Multivariate, Time-Series, Regression
+- **Time Period**: January - May 2016 (4.5 months)
+- **Data Size**: 19,735 records with 29 features
 - **Target Variable**: Appliances (energy consumption in Wh)
-- **Feature Types**: 
-  - Temperature sensor data (T1-T9)
-  - Humidity sensor data (RH_1-RH_9)
-  - Weather data (temperature, humidity, pressure, wind speed, etc.)
-  - Time features (hour, weekday, weekend indicators, etc.)
-  - Lag features and rolling statistics
+- **Sampling Rate**: 10-minute intervals
+
+### Data Collection Context
+This experimental data was collected to create regression models of appliances energy use in a low energy building. Hourly weather data from Chievres Airport, Belgium was downloaded from Reliable Prognosis (rp5.ru) and interpolated to 10-minute intervals.
+
+### Citations
+**Primary Reference:**
+Luis M. Candanedo, Veronique Feldheim, Dominique Deramaix, "Data driven prediction models of energy use of appliances in a low-energy house", Energy and Buildings, Volume 140, 1 April 2017, Pages 81-97, ISSN 0378-7788.
+
+**Dataset Repository:**
+Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
 
 ## Project Structure
 
@@ -27,7 +37,9 @@ This project applies various time series machine learning methods to predict hou
 │   ├── 1.0-EDA-Descriptive_Stats.ipynb           # Exploratory Data Analysis
 │   ├── 2.0-Feature_Engineering_Exploration.ipynb  # Feature Engineering
 │   ├── 3.0-Traditional_ML_Experimentation.ipynb   # Traditional Machine Learning
-│   └── 4.0-TimeSeries_ML_Experimentation.ipynb    # Time Series Machine Learning
+│   ├── 4.0-TimeSeries_ML_Experimentation.ipynb    # Time Series Machine Learning
+│   └── 4.0-TimeSeries_ML_Experimentation_executed.ipynb  # Executed version
+├── 4.1-TimeSeries_DL_Experimentation.py          # Deep Learning Time Series Experimentation
 ├── results/                        # Result files
 │   ├── eda_plots/                     # EDA plots
 │   └── prediction_plots/              # Prediction result plots
@@ -63,8 +75,8 @@ This project applies various time series machine learning methods to predict hou
 - **LSTM**: Long Short-Term Memory neural network
 
 ### 5. Deep Learning Models
-- PyTorch multi-layer neural network
 - TensorFlow/Keras LSTM network
+- Transformer-based time series forecasting model
 
 ## Model Performance Evaluation
 
@@ -93,9 +105,9 @@ Execute the notebooks in the following order:
 3. `3.0-Traditional_ML_Experimentation.ipynb` - Traditional machine learning
 4. `4.0-TimeSeries_ML_Experimentation.ipynb` - Time series machine learning
 
-### 4. Run Neural Network Model
+### 4. Run Deep Learning Time Series Experiment
 ```bash
-python neural_network.py
+python 4.1-TimeSeries_DL_Experimentation.py
 ```
 
 ## Key Findings
@@ -110,6 +122,7 @@ python neural_network.py
 - `results/eda_plots/`: EDA analysis plots
 - `results/prediction_plots/`: Model prediction result plots
 - `results/timeseries_model_results.csv`: Time series model performance comparison
+- `results/transformer_detailed_results.csv`: Transformer model detailed results
 
 ## Technology Stack
 
