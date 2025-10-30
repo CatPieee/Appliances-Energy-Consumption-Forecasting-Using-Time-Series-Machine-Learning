@@ -37,9 +37,16 @@ Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ic
 │   ├── 1.0-EDA-Descriptive_Stats.ipynb           # Exploratory Data Analysis
 │   ├── 2.0-Feature_Engineering_Exploration.ipynb  # Feature Engineering
 │   ├── 3.0-Traditional_ML_Experimentation.ipynb   # Traditional Machine Learning
-│   ├── 4.0-TimeSeries_ML_Experimentation.ipynb    # Time Series Machine Learning
-│   └── 4.0-TimeSeries_ML_Experimentation_executed.ipynb  # Executed version
-├── 4.1-TimeSeries_DL_Experimentation.py          # Deep Learning Time Series Experimentation
+│   ├── 4.0-TimeSeries_ML_Simplified.ipynb         # Time Series Machine Learning (Prophet & SARIMA)
+│   └── 4.0-TimeSeries_ML_Experimentation_executed.ipynb  # Original version (deprecated)
+├── src/                           # Source code
+│   └── deep_learning_models/      # Deep learning model implementations
+│       ├── __init__.py           # Module initialization
+│       ├── rnn_model.py          # RNN model implementation
+│       ├── lstm_model.py         # LSTM model implementation
+│       ├── transformer_model.py  # Transformer model implementation
+│       └── utils.py              # Deep learning utilities
+├── 4.1-TimeSeries_DL_Experimentation.py          # Deep Learning Time Series Experimentation (deprecated)
 ├── results/                        # Result files
 │   ├── eda_plots/                     # EDA plots
 │   └── prediction_plots/              # Prediction result plots
@@ -71,12 +78,14 @@ Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ic
 
 ### 4. Time Series Machine Learning Models
 - **Prophet**: Facebook's time series forecasting tool
-- **ARIMA**: Autoregressive Integrated Moving Average model
-- **LSTM**: Long Short-Term Memory neural network
+- **SARIMA**: Seasonal Autoregressive Integrated Moving Average model
 
 ### 5. Deep Learning Models
-- TensorFlow/Keras LSTM network
-- Transformer-based time series forecasting model
+- **RNN**: Recurrent Neural Network
+- **LSTM**: Long Short-Term Memory neural network  
+- **Transformer**: Attention-based time series forecasting model
+
+Note: Deep learning models are implemented as separate Python modules in `src/deep_learning_models/` for better modularity and reusability.
 
 ## Model Performance Evaluation
 
@@ -103,11 +112,24 @@ Execute the notebooks in the following order:
 1. `1.0-EDA-Descriptive_Stats.ipynb` - Data exploration
 2. `2.0-Feature_Engineering_Exploration.ipynb` - Feature engineering
 3. `3.0-Traditional_ML_Experimentation.ipynb` - Traditional machine learning
-4. `4.0-TimeSeries_ML_Experimentation.ipynb` - Time series machine learning
+4. `4.0-TimeSeries_ML_Simplified.ipynb` - Time series machine learning (Prophet & SARIMA)
 
-### 4. Run Deep Learning Time Series Experiment
+### 4. Run Deep Learning Time Series Experiments
 ```bash
-python 4.1-TimeSeries_DL_Experimentation.py
+# Run individual deep learning models
+python src/deep_learning_models/rnn_model.py        # RNN model
+python src/deep_learning_models/lstm_model.py       # LSTM model  
+python src/deep_learning_models/transformer_model.py # Transformer model
+```
+
+### 5. Use Deep Learning Models as Modules
+```python
+from src.deep_learning_models import RNNModel, LSTMModel, TransformerModel
+
+# Initialize and train models
+rnn_model = RNNModel(input_dim=34, hidden_dim=128, num_layers=2)
+lstm_model = LSTMModel(input_dim=34, hidden_dim=128, num_layers=2)
+transformer_model = TransformerModel(input_dim=34, d_model=128, num_heads=8, num_layers=6)
 ```
 
 ## Key Findings
@@ -115,7 +137,23 @@ python 4.1-TimeSeries_DL_Experimentation.py
 1. **Seasonal Patterns**: Appliance energy consumption shows clear daily and weekly seasonality
 2. **Feature Importance**: Lag features and rolling statistics significantly improve prediction performance
 3. **Model Performance**: Time series specialized models perform better at capturing temporal dependencies
-4. **Deep Learning**: LSTM can learn complex nonlinear temporal patterns
+4. **Deep Learning**: RNN, LSTM, and Transformer models can learn complex nonlinear temporal patterns
+
+## Architecture Overview
+
+This project is organized into three main categories:
+
+1. **Traditional Machine Learning** (`notebooks/3.0-Traditional_ML_Experimentation.ipynb`)
+   - Linear Regression, SVM, Decision Tree, Random Forest, XGBoost, MLP
+   - All models in a single Jupyter notebook for quick experimentation
+
+2. **Time Series Machine Learning** (`notebooks/4.0-TimeSeries_ML_Simplified.ipynb`)
+   - Prophet and SARIMA models only
+   - Focused on traditional time series forecasting methods
+
+3. **Deep Learning Models** (`src/deep_learning_models/`)
+   - RNN, LSTM, and Transformer models as separate Python modules
+   - Modular design for better reusability and longer training times
 
 ## Results
 
