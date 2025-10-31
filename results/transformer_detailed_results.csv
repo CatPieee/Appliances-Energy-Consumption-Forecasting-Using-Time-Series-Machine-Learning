@@ -1,2 +1,0 @@
-Model,Architecture,Sequence Length,Parameters,Training Epochs,Best Validation Loss,MSE,RMSE,MAE,R2
-Transformer,Multi-head Attention with Positional Encoding,24,160769,32,0.004866028129902627,5423.30224609375,73.64307330695637,39.78444290161133,0.34412866830825806
