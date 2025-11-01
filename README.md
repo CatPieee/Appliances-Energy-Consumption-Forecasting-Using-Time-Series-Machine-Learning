@@ -117,24 +117,3 @@ Execute the notebooks in the following order:
 4. `3.1-Traditional_ML_Feature_Abaltion.ipynb` - Feature ablation study
 5. `4.0-TimeSeries_ML.ipynb` - Time series machine learning (Prophet & SARIMA)
 6. `4.1-TimeSeries_DL_*.ipynb` - Deep learning models (RNN, LSTM, Transformer)
-
-
-## Architecture Overview
-
-This project is organized into four main categories:
-
-1. **Exploratory Data Analysis** (`notebooks/1.0-EDA-Descriptive_Stats.ipynb`)
-   - Data distribution and correlation analysis
-   - Time series visualization and seasonality detection
-
-2. **Traditional Machine Learning** (`notebooks/3.0-Traditional_ML.ipynb`, `3.1-Traditional_ML_Feature_Abaltion.ipynb`)
-   - Multiple ML models comparison
-   - Feature importance and ablation studies
-
-3. **Time Series Machine Learning** (`notebooks/4.0-TimeSeries_ML.ipynb`)
-   - Prophet and SARIMA models
-   - Traditional time series forecasting methods
-
-4. **Deep Learning Models** (`notebooks/4.1-TimeSeries_DL_*.ipynb`)
-   - RNN, LSTM, and Transformer implementations
-   - Individual notebooks for each architecture
