@@ -33,24 +33,23 @@ Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ic
 ├── data/                           # Data files
 │   ├── energydata_complete_raw.csv     # Raw data
 │   └── energydata_complete_cleaned.csv # Cleaned data
+├── models/                         # Trained models (empty)
 ├── notebooks/                      # Jupyter notebooks
 │   ├── 1.0-EDA-Descriptive_Stats.ipynb           # Exploratory Data Analysis
-│   ├── 2.0-Feature_Engineering_Exploration.ipynb  # Feature Engineering
-│   ├── 3.0-Traditional_ML_Experimentation.ipynb   # Traditional Machine Learning
-│   ├── 4.0-TimeSeries_ML_Simplified.ipynb         # Time Series Machine Learning (Prophet & SARIMA)
-│   └── 4.0-TimeSeries_ML_Experimentation_executed.ipynb  # Original version (deprecated)
-├── src/                           # Source code
-│   └── deep_learning_models/      # Deep learning model implementations
-│       ├── __init__.py           # Module initialization
-│       ├── rnn_model.py          # RNN model implementation
-│       ├── lstm_model.py         # LSTM model implementation
-│       ├── transformer_model.py  # Transformer model implementation
-│       └── utils.py              # Deep learning utilities
-├── 4.1-TimeSeries_DL_Experimentation.py          # Deep Learning Time Series Experimentation (deprecated)
+│   ├── 2.0-Feature_Engineering.ipynb              # Feature Engineering
+│   ├── 3.0-Traditional_ML.ipynb                   # Traditional Machine Learning
+│   ├── 3.1-Traditional_ML_Feature_Abaltion.ipynb  # Feature Ablation Study
+│   ├── 4.0-TimeSeries_ML.ipynb                    # Time Series Machine Learning
+│   ├── 4.1-TimeSeries_DL_LSTM.ipynb               # LSTM Deep Learning
+│   ├── 4.1-TimeSeries_DL_RNN.ipynb                  # RNN Deep Learning
+│   └── 4.1-TimeSeries_DL_Transformer.ipynb        # Transformer Deep Learning
 ├── results/                        # Result files
-│   ├── eda_plots/                     # EDA plots
-│   └── prediction_plots/              # Prediction result plots
-├── neural_network.py               # PyTorch neural network implementation
+│   ├── eda_plots/                     # EDA visualization plots
+│   ├── prediction_plots/              # Model prediction plots
+│   ├── lstm_predictions.csv            # LSTM model predictions
+│   ├── rnn_predictions.csv             # RNN model predictions
+│   ├── transformer_predictions.csv     # Transformer model predictions
+│   └── timeseries_model_results.csv   # Model performance comparison
 ├── requirements.txt                # Dependencies
 └── README.md                      # Project documentation
 ```
@@ -76,16 +75,19 @@ Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ic
 - Support Vector Machine (SVM)
 - Multi-layer Perceptron (MLP)
 
+### 3.1 Feature Ablation Study
+- Systematic feature importance analysis
+- Performance comparison with feature subsets
+- Model sensitivity to different feature groups
+
 ### 4. Time Series Machine Learning Models
 - **Prophet**: Facebook's time series forecasting tool
 - **SARIMA**: Seasonal Autoregressive Integrated Moving Average model
 
 ### 5. Deep Learning Models
-- **RNN**: Recurrent Neural Network
-- **LSTM**: Long Short-Term Memory neural network  
-- **Transformer**: Attention-based time series forecasting model
-
-Note: Deep learning models are implemented as separate Python modules in `src/deep_learning_models/` for better modularity and reusability.
+- **RNN**: Recurrent Neural Network (`4.1-TimeSeries_DL_RNN.ipynb`)
+- **LSTM**: Long Short-Term Memory neural network (`4.1-TimeSeries_DL_LSTM.ipynb`)
+- **Transformer**: Attention-based time series forecasting model (`4.1-TimeSeries_DL_Transformer.ipynb`)
 
 ## Model Performance Evaluation
 
@@ -110,63 +112,29 @@ pip install -r requirements.txt
 ### 3. Run Experiments
 Execute the notebooks in the following order:
 1. `1.0-EDA-Descriptive_Stats.ipynb` - Data exploration
-2. `2.0-Feature_Engineering_Exploration.ipynb` - Feature engineering
-3. `3.0-Traditional_ML_Experimentation.ipynb` - Traditional machine learning
-4. `4.0-TimeSeries_ML_Simplified.ipynb` - Time series machine learning (Prophet & SARIMA)
+2. `2.0-Feature_Engineering.ipynb` - Feature engineering
+3. `3.0-Traditional_ML.ipynb` - Traditional machine learning
+4. `3.1-Traditional_ML_Feature_Abaltion.ipynb` - Feature ablation study
+5. `4.0-TimeSeries_ML.ipynb` - Time series machine learning (Prophet & SARIMA)
+6. `4.1-TimeSeries_DL_*.ipynb` - Deep learning models (RNN, LSTM, Transformer)
 
-### 4. Run Deep Learning Time Series Experiments
-```bash
-# Run individual deep learning models
-python src/deep_learning_models/rnn_model.py        # RNN model
-python src/deep_learning_models/lstm_model.py       # LSTM model  
-python src/deep_learning_models/transformer_model.py # Transformer model
-```
-
-### 5. Use Deep Learning Models as Modules
-```python
-from src.deep_learning_models import RNNModel, LSTMModel, TransformerModel
-
-# Initialize and train models
-rnn_model = RNNModel(input_dim=34, hidden_dim=128, num_layers=2)
-lstm_model = LSTMModel(input_dim=34, hidden_dim=128, num_layers=2)
-transformer_model = TransformerModel(input_dim=34, d_model=128, num_heads=8, num_layers=6)
-```
-
-## Key Findings
-
-1. **Seasonal Patterns**: Appliance energy consumption shows clear daily and weekly seasonality
-2. **Feature Importance**: Lag features and rolling statistics significantly improve prediction performance
-3. **Model Performance**: Time series specialized models perform better at capturing temporal dependencies
-4. **Deep Learning**: RNN, LSTM, and Transformer models can learn complex nonlinear temporal patterns
 
 ## Architecture Overview
 
-This project is organized into three main categories:
+This project is organized into four main categories:
 
-1. **Traditional Machine Learning** (`notebooks/3.0-Traditional_ML_Experimentation.ipynb`)
-   - Linear Regression, SVM, Decision Tree, Random Forest, XGBoost, MLP
-   - All models in a single Jupyter notebook for quick experimentation
+1. **Exploratory Data Analysis** (`notebooks/1.0-EDA-Descriptive_Stats.ipynb`)
+   - Data distribution and correlation analysis
+   - Time series visualization and seasonality detection
 
-2. **Time Series Machine Learning** (`notebooks/4.0-TimeSeries_ML_Simplified.ipynb`)
-   - Prophet and SARIMA models only
-   - Focused on traditional time series forecasting methods
+2. **Traditional Machine Learning** (`notebooks/3.0-Traditional_ML.ipynb`, `3.1-Traditional_ML_Feature_Abaltion.ipynb`)
+   - Multiple ML models comparison
+   - Feature importance and ablation studies
 
-3. **Deep Learning Models** (`src/deep_learning_models/`)
-   - RNN, LSTM, and Transformer models as separate Python modules
-   - Modular design for better reusability and longer training times
+3. **Time Series Machine Learning** (`notebooks/4.0-TimeSeries_ML.ipynb`)
+   - Prophet and SARIMA models
+   - Traditional time series forecasting methods
 
-## Results
-
-- `results/eda_plots/`: EDA analysis plots
-- `results/prediction_plots/`: Model prediction result plots
-- `results/timeseries_model_results.csv`: Time series model performance comparison
-- `results/transformer_detailed_results.csv`: Transformer model detailed results
-
-## Technology Stack
-
-- **Data Processing**: pandas, numpy
-- **Visualization**: matplotlib, seaborn
-- **Traditional ML**: scikit-learn, xgboost
-- **Time Series**: prophet, statsmodels
-- **Deep Learning**: tensorflow, keras, pytorch
-- **Development**: Jupyter Notebook
+4. **Deep Learning Models** (`notebooks/4.1-TimeSeries_DL_*.ipynb`)
+   - RNN, LSTM, and Transformer implementations
+   - Individual notebooks for each architecture
